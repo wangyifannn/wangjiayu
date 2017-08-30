@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>登录</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="css/register.css">
+        <link rel="stylesheet" href="css/login.css">
+    </head>
+    <body>
+    
+        <header>
+            <a href="index.html"><div class="logo"></div></a>
+            <h2>欢迎登录</h2>
+            <p>还未注册？ <a href="register.html">请注册</a> </p>
+        </header>
+
+        <section>
+            
+            <form class="register login">
+                <p class="uname">
+                    <input type="text" class="txtname" value="用户名" disabled>
+                    <input type="text" class="txtvalue" name="un" placeholder="请输入您的用户名">
+                    
+                </p>
+                <p class="upword">
+                    <input type="text" class="txtname" value="密码" disabled>
+                    <input type="password" class="txtvalue" name="upw"  placeholder="请输入6-20位字符">
+                    
+                </p>
+                <p class="submit">
+                    <input type="button" class="subbtn" value="登录">
+                    <span class="wrong"></span>
+                </p>
+            </form>
+
+            <div class="qrcode">
+                <a href="" class="qq"></a>
+                <a href="" class="weixin"></a>
+                <a href="" class="weibo"></a>
+            </div>
+        </section>
+
+
+        <footer>
+            <div class="innerfooter">
+                <ul class="ensureUl">
+                    <li>
+                        <div class="ensureimg ensureimg1"></div>
+                        <p>30天无忧退货</p>
+                    </li>
+                    <li>
+                        <div class="ensureimg ensureimg2"></div>
+                        <p>满88元包邮</p>
+                    </li>
+                    <li>
+                        <div class="ensureimg ensureimg3"></div>
+                        <p>网易品质保证</p>
+                    </li>
+                </ul>
+                <hr>
+                <div class="aboutus">
+                    <p class="us_nav">
+                        <a href="">关于我们</a>
+                        <a href="">服务协议</a>
+                        <a href="">使用指南</a>
+                        <a href="">联系我们</a>
+                        <a href="">加入我们</a>
+                        <a href="">售后服务</a>
+                        <a href="">搜索推荐</a>
+                        <a href="">友情链接</a>
+                    </p>
+                    <p>网易公司版权所有 © 1997-2017   食品经营许可证：JY13301080111719</p>
+                    <p>公司名称</p>
+                    <p>公司地址</p>
+                    <p>图书证名称：中华人民共和国出版物经营许可证  图书证编号：新出发京零 字第 朝 150051 号</p>
+                </div>
+            </div>    
+        </footer>
+
+
+        <script src="js/jquery-1.12.3.min.js"></script>
+        <script>
+            
+
+            // 判断客户是否已登录，若登录返回首页
+            if(localStorage.getItem("token")){
+                $("section").html("<p class='suclogin'>尊敬的 "+localStorage.username +" 您好,您已登录成功，请勿重复登录。</p>");
+
+                setTimeout(function() {
+                    location.href="index.html"
+                }, 3000);
+            }
+            
+
+
+            $(function(){
+
+                $(".subbtn").click(function(){
+
+                    var username= $("input[name=un]").val();
+                    var password=$("input[name=upw]").val();
+
+                    $.ajax({
+
+                        "url":"http://h6.duchengjiu.top/shop/api_user.php",
+                        "type": "POST",
+                        "data": {
+                            "status": "login",
+                            "username": username,
+                            "password": password
+                        },
+                        "dataType": "json",
+                        "success": function(response){
+
+                            // 当登录成功后，将客户信息存储在localStorage中
+                            if(response.code === 0){
+
+                                $(".submit span").html("");
+                                $(".submit span").removeClass();
+
+                                var data=response.data;
+
+                                // 遍历登录成功后，服务器返回的数据json的每一项，将每一项存储于localStorage
+                                for(prop in data){
+
+                                    if(data.hasOwnProperty(prop)){
+                                        localStorage.setItem(prop,data[prop]);
+                                    }
+                                }
+
+
+                                
+
+                                // 登录成功跳转首页
+                                
+
+                                var callbackURL=location.hash.substr(10);
+
+                                if(callbackURL){
+                                    location.href=callbackURL;
+                                }else{
+                                    location.href="index.html";
+                                }
+
+
+
+
+
+
+                            }else{
+                                $(".submit span").html(response.message);
+                            }
+
+                        }
+                    });
+                });
+
+            });
+
+
+        </script>
+    </body>
+</html>

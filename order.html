@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>订单详情页</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/order.css">
+    <link rel="shortcut icon" href="images/favicon.ico">
+
+</head>
+
+<body>
+    <header>
+        <div class="loginBox">
+            <div class="loginDiv">
+                <a href="index.html">好品质，好生活</a>
+                <div class="login_right">
+                    <ul>
+                        <li>
+                            <p class="loginsite">
+                                <a href="login.html">登录</a>
+                                <a href="register.html">注册</a>
+                            </p>
+                        </li>
+                        <li><a href="order.html">我的订单</a></li>
+                        <li><a href="cart.html">购物车</a></li>
+                        <li><a href="">下载APP</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="logoDiv">
+            <a href="index.html">
+                <div class="logo"></div>
+            </a>
+            <h2>订单详情页</h2>
+            <div class="searchDiv">
+                <input type="text" id="searchTxt" class="searchTxt" placeholder="搜索商品">
+                <input type="button" id="searchBtn" class="searchBtn">
+            </div>
+        </div>
+    </header>
+
+    <aside>
+        <div class="asideDiv a_downAPP">
+            <div></div>
+            <p>下载APP</p>
+        </div>
+        <div class="asideDiv a_service">
+            <div></div>
+            <p>在线客服</p>
+        </div>
+        <div class="asideDiv a_feedback">
+            <div></div>
+            <p>意见反馈</p>
+        </div>
+        <div class="asideDiv a_survey">
+            <div></div>
+            <p>有奖调查</p>
+        </div>
+
+        <div class="asideDiv backtotop">回到顶部</div>
+    </aside>
+
+
+    <section>
+
+        <div class="inner_section">
+
+            <div class="order_head">
+                <div class="order_head_pro">订单信息</div>
+                <div class="order_head_name">数量</div>
+                <div class="order_head_price">订单金额</div>
+                <div class="order_head_state">订单状态</div>
+                <div class="order_head_operation">操作</div>
+            </div>
+
+
+
+            <div class="order_content" id="order_content">
+
+                <!-- <div class="order_box">
+
+                    <p class="order_id">订单号：</p>
+
+                    <div class="order_pro">
+                        <div class="order_pro_img">
+                            <input type="hidden" class="cart_pro_goodsid" value="商品id">
+                            <img src="">
+                        </div>
+                        <div class="order_pro_pro">商品信息</div>
+                        <div class="order_pro_name">数量</div>
+                        <div class="order_pro_unitp">￥<span>单价</span></div>
+                        <div class="order_pro_state">订单状态</div>
+                        <div class="order_pro_operation">
+                            <a href="javascript:void(0);" class="cart_pro_delete">删除</a>
+                        </div>
+                    </div>
+                    <p class="order_sumprice">订单总金额：￥</p>
+                </div> -->
+
+            </div>
+
+
+
+
+            <div class="order_foot">
+                <div class="order_foot_right">
+                    <div class="order_foot_subprice">
+                        订单总价（不含运费）：<strong>￥<span>0</span></strong>
+                    </div>
+                    <a href="javascript:void(0);" class="order_foot_account">去支付</a>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+        <div class="innerfooter">
+            <ul class="ensureUl">
+                <li>
+                    <div class="ensureimg ensureimg1"></div>
+                    <p>30天无忧退货</p>
+                </li>
+                <li>
+                    <div class="ensureimg ensureimg2"></div>
+                    <p>满88元包邮</p>
+                </li>
+                <li>
+                    <div class="ensureimg ensureimg3"></div>
+                    <p>网易品质保证</p>
+                </li>
+            </ul>
+            <hr>
+            <div class="aboutus">
+                <p class="us_nav">
+                    <a href="">关于我们</a>
+                    <a href="">服务协议</a>
+                    <a href="">使用指南</a>
+                    <a href="">联系我们</a>
+                    <a href="">加入我们</a>
+                    <a href="">售后服务</a>
+                    <a href="">搜索推荐</a>
+                    <a href="">友情链接</a>
+                </p>
+                <p>网易公司版权所有 © 1997-2017 食品经营许可证：JY13301080111719</p>
+                <p>公司名称</p>
+                <p>公司地址</p>
+                <p>图书证名称：中华人民共和国出版物经营许可证 图书证编号：新出发京零 字第 朝 150051 号</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="js/jquery-1.12.3.min.js"></script>
+    <script>
+        var noProDiv = `<div class="order_no_pro">
+                            <img src="images/cartimg.png">
+                            <p>订单内暂时没有商品，请先购物</p>
+                            <a href="index.html">去购物></a>
+                        </div>`;
+
+
+
+        // 判断客户是否已登录，若登录，将网页中的登录注册等换成客户的用户名
+        if (localStorage.getItem("token")) {
+            $(".loginsite").html(localStorage.getItem("username"));
+        } else {
+            $(".inner_section").html(noProDiv);
+        }
+
+        $(function() {
+
+            // 搜索框
+            $("#searchBtn").click(function() {
+
+                var txtStr = $("#searchTxt").val();
+
+                // 如果是数字true，如果是汉字false
+                if (txtStr > 0) {
+                    window.location.href = "detail.html?goods_id=" + txtStr;
+                } else {
+                    window.location.href = "list.html?search_text=" + txtStr;
+                }
+
+            });
+
+
+            // 侧边导航栏
+
+            $(window).scroll(function() {
+                if ($(window).scrollTop() > 300) {
+                    $("aside").stop(true).fadeIn();
+                } else {
+                    $("aside").stop(true).fadeOut();
+                }
+            });
+
+            $(".backtotop").click(function() {
+                $("html,body").animate({
+                    "scrollTop": 0
+                }, 500);
+            });
+
+
+
+            // 获取订单列表
+            $.ajax({
+                "url": "http://h6.duchengjiu.top/shop/api_order.php?token=" + localStorage.token,
+                "type": "GET",
+                "dataType": "json",
+                "success": function(response) {
+                    // console.log(response);
+
+                    if (response.data.length === 0) {
+                        $(".inner_section").html(noProDiv);
+                    }
+                    if (response.code === 0) {
+
+                        var html = "";
+                        var sumPrice = 0;
+
+                        for (var i = 0; i < response.data.length; i++) {
+
+                            var obj = response.data[i];
+
+                            html += `<div class='order_box'><p class='order_id'>订单号：${obj.order_id} </p>`;
+
+
+                            for (var j = 0; j < obj.goods_list.length; j++) {
+                                var goods = obj.goods_list[j];
+
+                                var order_state = "";
+                                switch (obj.order_status) {
+                                    case "5":
+                                        order_state = "未支付"
+                                        break;
+                                    case "10":
+                                        order_state = "支付成功"
+                                        break;
+                                    case "15":
+                                        order_state = "支付失败"
+                                        break;
+                                    case "20":
+                                        order_state = "已完成"
+                                        break;
+                                    default:
+                                        order_state = "订单正在处理中"
+                                        break;
+                                }
+
+                                html += `<div class="order_pro">
+                                                <div class="order_pro_img">
+                                                    <input type="hidden" class="cart_pro_goodsid" value="${goods.goods_id}">
+                                                    <img src="${goods.goods_thumb}">
+                                                </div>
+                                                <div class="order_pro_pro">${goods.goods_name}</div>
+                                                <div class="order_pro_name">${goods.goods_number}</div>
+                                                <div class="order_pro_unitp">￥<span>${goods.goods_price}</span></div>
+                                                <div class="order_pro_state">${order_state}</div>
+                                                <div class="order_pro_operation">
+                                                    <a href="javascript:void(0);" class="cart_pro_delete">删除</a>
+                                                </div>
+                                            </div>`;
+
+                                localStorage.removeItem("cart" + goods.goods_id);
+                            }
+                            html += `<p class="order_sumprice">订单总金额：￥ ${obj.total_prices}</p></div>`;
+
+                            $(".order_content").html(html);
+
+                            sumPrice += parseFloat(obj.total_prices);
+                        }
+
+                        $(".order_foot_subprice span").html(sumPrice);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

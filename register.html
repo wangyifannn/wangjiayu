@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>注册</title>
+        <meta charset="UTF-8">
+        
+        <link rel="stylesheet" href="css/register.css">
+        <link rel="shortcut icon" href="images/favicon.ico">
+    </head>
+    <body>
+    
+        <header>
+            <a href="index.html"><div class="logo"></div></a>
+            <h2>欢迎注册</h2>
+            <p>已有账号？ <a href="login.html">请登录</a> </p>
+        </header>
+
+        <section>
+            
+            <form class="register">
+                <p class="uname">
+                    <input type="text" class="txtname" value="用户名" disabled>
+                    <input type="text" class="txtvalue" name="un" placeholder="请输入您的用户名">
+                    <span class="un_tip"></span>
+                </p>
+                <p class="upword">
+                    <input type="text" class="txtname" value="设置密码" disabled>
+                    <input type="password" class="txtvalue" name="upw"  placeholder="请输入6-20位字符">
+                    <span class="upw_tip"></span>
+                </p>
+                <p class="reupword">
+                    <input type="text" class="txtname" value="确认密码" disabled>
+                    <input type="password" class="txtvalue" name="rupw"  placeholder="请再次输入密码">
+                    <span class="rupw_tip"></span>
+                </p>
+                <p class="submit">
+                    <input type="button" class="subbtn" value="立即注册">
+                    <span class="wrong"></span>
+                </p>
+            </form>
+        </section>
+
+
+
+        <footer>
+            <div class="innerfooter">
+                <ul class="ensureUl">
+                    <li>
+                        <div class="ensureimg ensureimg1"></div>
+                        <p>30天无忧退货</p>
+                    </li>
+                    <li>
+                        <div class="ensureimg ensureimg2"></div>
+                        <p>满88元包邮</p>
+                    </li>
+                    <li>
+                        <div class="ensureimg ensureimg3"></div>
+                        <p>网易品质保证</p>
+                    </li>
+                </ul>
+                <hr>
+                <div class="aboutus">
+                    <p class="us_nav">
+                        <a href="">关于我们</a>
+                        <a href="">服务协议</a>
+                        <a href="">使用指南</a>
+                        <a href="">联系我们</a>
+                        <a href="">加入我们</a>
+                        <a href="">售后服务</a>
+                        <a href="">搜索推荐</a>
+                        <a href="">友情链接</a>
+                    </p>
+                    <p>网易公司版权所有 © 1997-2017   食品经营许可证：JY13301080111719</p>
+                    <p>公司名称</p>
+                    <p>公司地址</p>
+                    <p>图书证名称：中华人民共和国出版物经营许可证  图书证编号：新出发京零 字第 朝 150051 号</p>
+                </div>
+            </div>    
+        </footer>
+        
+
+
+
+        <script src="js/jquery-1.12.3.min.js"></script>
+        <script>
+
+            // 用户名提示
+            $("input[name='un']").focus(function(){
+
+                $(".uname span").html("请使用字母、数字、下划线组合，3-20位字符");
+
+            });
+
+
+            $("input[name='un']").blur(function(){
+                    
+                var username= $("input[name='un']").val();
+                
+                $.ajax({
+                    "url": "http://h6.duchengjiu.top/shop/api_user.php",
+                    "type": "POST",
+                    "datatype": "json",
+                    "data": {
+                        "status": "check",
+                        "username": username
+                    },
+                    "success": function(response){
+                        $(".uname span").html(response.message);
+                        if(response.code != 0){
+                            $(".uname span").addClass("wrong");
+                            $(".uname input").css("border-color","#EE2222");
+                        }else{
+                            $(".uname span").removeClass();
+                            $(".uname input").css("border-color","#ddd");
+                        }
+                    }
+                });
+            });
+
+
+            // 密码提示
+            $("input[name='upw']").focus(function(){
+
+                 $(".upword span").html("建议使用字母、数字、下划线等两种或两种以上组合，6-20位字符");
+
+            });
+
+            $("input[name='upw']").blur(function(){
+                    
+                var password= $("input[name='upw']").val();
+
+                if(password.length <6||password.length >20){
+                    $(".upword span").html("请输入6-20位密码");
+                    $(".upword span").addClass("wrong");
+                    $(".upword input").css("border-color","#EE2222");
+                }else{
+                    $(".upword span").html("");
+                    $(".upword span").removeClass();
+                    $(".upword input").css("border-color","#ddd");
+                }
+
+            });
+
+
+
+            // 确认密码提示
+            $("input[name='rupw']").focus(function(){
+
+                 $(".reupword span").html("请再次输入密码");
+
+            });
+
+
+            $("input[name='rupw']").blur(function(){
+
+                var password= $("input[name='upw']").val();    
+                var repassword= $("input[name='rupw']").val();
+
+                if(password === repassword){
+                    $(".reupword span").html("");
+                    $(".reupword span").removeClass();
+                    $(".reupword input").css("border-color","#ddd");
+
+                }else{
+                    $(".reupword span").html("两次密码不一致，请重新输入");
+                    $(".reupword span").addClass("wrong");
+                    $(".reupword input").css("border-color","#EE2222");
+                }
+
+            });
+
+
+            // 注册提交
+            $(".subbtn").click(function(){
+
+                var username= $("input[name='un']").val();
+                var password= $("input[name='upw']").val();    
+                var repassword= $("input[name='rupw']").val();
+                
+                $.ajax({
+
+                    "url": "http://h6.duchengjiu.top/shop/api_user.php",
+                    "type": "POST",
+                    "data": {
+                        "status": "register",
+                        "username": username,
+                        "password": password
+                    },
+                    "dataType": "json",
+                    "success": function(response){
+
+                
+                        if(response.code==0 && password==repassword){
+                            $(".register span").html("");
+                            $(".register span").removeClass();
+                            $(".register input").css("border-color","#ddd");
+
+                            window.location.href="login.html";
+
+                        }else if(password != repassword){
+                            $(".reupword span").html("两次密码不一致，请重新输入");
+                            $(".reupword span").addClass("wrong");
+                            $(".reupword input").css("border-color","#EE2222");
+                        }else if(response.code==2001){
+                            $(".uname span").html(response.message);
+                            $(".uname span").addClass("wrong");
+                            $(".uname input").css("border-color","#EE2222");
+                        }else{
+                            $(".submit span").show();
+                            $(".submit span").html(response.message);
+                            $(".submit span").delay(3000).hide(2000);
+                        }
+                    }
+
+                });
+
+            });
+
+            
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>电商网站-首页</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="shortcut icon" href="images/favicon.ico">
+</head>
+
+<body>
+
+    <header>
+        <div class="loginBox">
+            <div class="loginDiv">
+                <a href="index.html">好品质，好生活</a>
+                <div class="login_right">
+                    <ul>
+                        <li>
+                            <p class="loginsite">
+                                <a href="login.html">登录</a>
+                                <a href="register.html">注册</a>
+                            </p>
+                        </li>
+                        <li><a href="order.html">我的订单</a></li>
+                        <li><a href="cart.html">购物车</a></li>
+                        <li><a href="">下载APP</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="logoDiv">
+            <a href="index.html">
+                <div class="logo"></div>
+            </a>
+            <div class="searchDiv">
+                <input type="text" id="searchTxt" class="searchTxt" placeholder="搜索商品">
+                <input type="button" id="searchBtn" class="searchBtn">
+            </div>
+        </div>
+
+        <div id="navDiv" class="navDiv">
+            <ul>
+                <li><a href="index.html" class="navfirst">首页</a></li>
+            </ul>
+
+            <div class="fixedDiv">
+                <div class="fixedNav">
+                    <div class="navLogo"></div>
+                    <ul>
+                        <li><a href="index.html" class="navfirst">首页</a></li>
+                    </ul>
+                    <div class="fixedLogin">
+                        <p class="loginsite">
+                            <a href="login.html">登录</a>
+                            <a href="register.html">注册</a>
+                        </p>
+                        <a href="cart.html" class="shopping_cart"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="carouselDiv">
+        <div class="car_btns">
+            <span class="leftBtn"></span>
+            <span class="rightBtn"></span>
+        </div>
+
+        <div class="carousel">
+            <ul></ul>
+        </div>
+
+        <div class="circleDiv">
+            <ul></ul>
+        </div>
+    </div>
+
+    <aside>
+        <div class="asideDiv a_downAPP">
+            <div></div>
+            <p>下载APP</p>
+        </div>
+        <div class="asideDiv a_service">
+            <div></div>
+            <p>在线客服</p>
+        </div>
+        <div class="asideDiv a_feedback">
+            <div></div>
+            <p>意见反馈</p>
+        </div>
+        <div class="asideDiv a_survey">
+            <div></div>
+            <p>有奖调查</p>
+        </div>
+
+        <div class="asideDiv backtotop">回到顶部</div>
+    </aside>
+
+
+
+
+    <section>
+        <div id="content" class="content">
+            <ul></ul>
+            <div class="skip">
+                <div class="skipPage prevPage">上一页</div>
+                <div class="inner_pagination">
+                    <div class="pagination">
+
+                    </div>
+                </div>
+                <div class="skipPage nextPage">下一页</div>
+            </div>
+        </div>
+
+    </section>
+
+
+
+    <footer>
+        <div class="innerfooter">
+            <ul class="ensureUl">
+                <li>
+                    <div class="ensureimg ensureimg1"></div>
+                    <p>30天无忧退货</p>
+                </li>
+                <li>
+                    <div class="ensureimg ensureimg2"></div>
+                    <p>满88元包邮</p>
+                </li>
+                <li>
+                    <div class="ensureimg ensureimg3"></div>
+                    <p>网易品质保证</p>
+                </li>
+            </ul>
+            <hr>
+            <div class="aboutus">
+                <p class="us_nav">
+                    <a href="">关于我们</a>
+                    <a href="">服务协议</a>
+                    <a href="">使用指南</a>
+                    <a href="">联系我们</a>
+                    <a href="">加入我们</a>
+                    <a href="">售后服务</a>
+                    <a href="">搜索推荐</a>
+                    <a href="">友情链接</a>
+                </p>
+                <p>网易公司版权所有 © 1997-2017 食品经营许可证：JY13301080111719</p>
+                <p>公司名称</p>
+                <p>公司地址</p>
+                <p>图书证名称：中华人民共和国出版物经营许可证 图书证编号：新出发京零 字第 朝 150051 号</p>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script src="js/jquery-1.12.3.min.js"></script>
+    <script>
+        // 判断客户是否已登录，若登录，将网页中的登录注册等换成客户的用户名
+        if (localStorage.getItem("token")) {
+            $(".loginsite").html(localStorage.getItem("username"));
+        }
+
+
+
+        $(function() {
+
+            // 导航栏
+            $.get("http://h6.duchengjiu.top/shop/api_cat.php", function(response) {
+
+                for (var i = 0; i < response.data.length; i++) {
+
+                    $("#navDiv ul").append('<li><a href="list.html?cat_id=' + response.data[i].cat_id + '">' + response.data[i].cat_name + '</a></li>');
+                }
+            });
+
+
+            // 搜索框
+            $("#searchBtn").click(function() {
+
+                var txtStr = $("#searchTxt").val();
+
+                // 如果是数字true，如果是汉字false
+                if (txtStr > 0) {
+                    window.location.href = "detail.html?goods_id=" + txtStr;
+                } else {
+                    window.location.href = "list.html?search_text=" + txtStr;
+                }
+
+            });
+
+
+            // 轮播图
+
+            $.get("http://h6.duchengjiu.top/shop/api_ad.php?position_id=1", function(response) {
+
+                for (var i = 0; i < response.data.length; i++) {
+                    $(".carousel ul").append('<li><a href="' + response.data[i].thumb + '" target="_black"><img src="' + response.data[i].url + '"></a></li>');
+
+                    $(".circleDiv ul").append("<li></li>");
+                }
+
+                var idx = 0;
+                var $imgLis = $(".carousel ul li");
+                var timer = null;
+                var $circleLIs = $(".circleDiv ul li");
+
+                $(".rightBtn").click(function() {
+                    move();
+                });
+
+                $(".leftBtn").click(function() {
+                    if ($imgLis.is(":animated")) {
+                        return;
+                    }
+
+                    $imgLis.eq(idx).fadeOut();
+                    idx--;
+                    if (idx < 0) {
+                        idx = $imgLis.length - 1;
+                    }
+
+                    $imgLis.eq(idx).fadeIn();
+                    changeCir();
+                });
+
+                timer = setInterval(function() {
+                    move();
+                }, 2000);
+
+                $(".carouselDiv").mouseenter(function() {
+                    $(".car_btns span").stop(true).fadeIn(1000);
+                    clearInterval(timer);
+                });
+                $(".carouselDiv").mouseleave(function() {
+                    $(".car_btns span").stop(true).fadeOut(1000);
+                    timer = setInterval(function() {
+                        move();
+                    }, 2000);
+                });
+
+                function move() {
+
+                    if ($imgLis.is(":animated")) {
+                        return;
+                    }
+
+                    $imgLis.eq(idx).fadeOut();
+
+                    idx++;
+                    if (idx > $imgLis.length - 1) {
+                        idx = 0;
+                    }
+
+                    $imgLis.eq(idx).fadeIn();
+                    changeCir();
+                }
+
+                $circleLIs.eq(0).addClass("circleli");
+
+                $circleLIs.mouseenter(function() {
+                    if ($imgLis.is(":animated") || $imgLis.eq($(this).index()).is(":visible")) {
+                        return;
+                    }
+                    $imgLis.eq(idx).fadeOut();
+
+                    idx = $(this).index();
+
+
+                    $imgLis.eq(idx).fadeIn();
+                    changeCir();
+                });
+
+                function changeCir() {
+                    $circleLIs.eq(idx).addClass("circleli").siblings().removeClass("circleli");
+                }
+
+            });
+
+
+            // 侧边导航栏
+
+            $(window).scroll(function() {
+                if ($(window).scrollTop() > 300) {
+                    $("aside").stop(true).fadeIn();
+                    $(".fixedDiv").stop(true).fadeIn();
+                } else {
+                    $("aside").stop(true).fadeOut();
+                    $(".fixedDiv").stop(true).fadeOut();
+                }
+            });
+
+            $(".backtotop").click(function() {
+                $("html,body").animate({
+                    "scrollTop": 0
+                }, 500);
+            });
+
+
+
+            // 分页显示商品
+            var page = 1;
+            var maxPage = 1;
+            showPro(1);
+
+            function showPro(page) {
+                $.get("http://h6.duchengjiu.top/shop/api_goods.php?page=" + page + "&pagesize=20", function(response) {
+
+                    console.log(response);
+                    maxPage = response.page.page_count;
+                    for (var j = 0; j < response.page.page_count; j++) {
+                        $(".pagination").append("<span>" + (j + 1) + "</span>")
+                    }
+
+                    for (var i = 0; i < response.data.length; i++) {
+
+                        $("#content ul").append('<li><img src="' + response.data[i].goods_thumb + '"><p title="' + response.data[i].goods_name + '"><a href="detail.html?goods_id=' + response.data[i].goods_id + '">' + response.data[i].goods_name + '</a></p><p>' + response.data[i].goods_desc + '</p><p class="price">￥' + response.data[i].price + '</p></li>');
+                    }
+
+
+                });
+            }
+
+
+            $(".prevPage").click(function() {
+                $("html,body").animate({
+                    "scrollTop": 750
+                }, 500);
+                page--;
+                if (page < 1) page = 1;
+                $("#content ul").html("");
+                showPro(page);
+                $(".pagination").css("marginLeft", (page - 1) * -50);
+            });
+
+
+            $(".nextPage").click(function() {
+                $("html,body").animate({
+                    "scrollTop": 750
+                }, 500);
+                page++;
+                if (page > maxPage) page = maxPage;
+                $("#content ul").html("");
+                showPro(page);
+                $(".pagination").css("marginLeft", (page - 1) * -50);
+            });
+
+
+
+            $(".pagination").click(function(event) {
+                $("html,body").animate({
+                    "scrollTop": 750
+                }, 500);
+                if (event.target.nodeName === "SPAN") {
+                    page = event.target.innerText;
+                    $("#content ul").html("");
+                    $(".pagination").css("marginLeft", (page - 1) * -50);
+                    showPro(page);
+
+                }
+            })
+
+        });
+    </script>
+</body>
+
+</html>

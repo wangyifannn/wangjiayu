@@ -1,0 +1,172 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+    color: #666;
+    font-size: 12px;
+}
+ul{
+    list-style: none;
+}
+header{
+    width: 100%;
+    height: 100px;
+    line-height: 100px;
+    box-shadow: 1px 1px 10px #666;
+}
+.logo{
+    width: 180px;
+    height: 70px;
+    background: url(../images/logo.png) no-repeat; 
+    margin-top: 15px; 
+    margin-left: 100px;
+    float: left;
+    margin-right: 60px;
+}
+header h2{
+    color: #333;
+    font-weight: normal;
+    float: left;
+}
+header p{
+    float: right;
+    margin-right: 160px;
+    color: #999;
+    font-size: 16px;
+    margin-top: 20px;
+}
+header p a{
+    font-size: 16px;
+    color: #333;
+    margin-left: 14px;
+}
+section{
+    width: 500px;
+    height: 500px;
+    margin: 60px auto;
+}
+.register p{
+    width: 100%;
+    height: 80px;
+    margin-top: 20px;
+    position: relative;
+}
+.register p input{
+    outline: none;
+    height: 50px;
+    float: left;
+    border: 2px solid #ddd;
+    font-size: 14px;
+    
+}
+.register p input.txtname{
+    width: 120px;
+    border-right: none;
+    background: white; 
+    text-align: center;
+
+}
+.register p input.txtvalue{
+    width: 280px;
+    border-left: none;
+}
+.register p span{
+    display: block;
+    width: 100%;
+    height: 16px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    font-size: 12px;
+    color: #999;
+}
+.register p input.subbtn{
+    width: 400px;
+    background-color: #B4A078;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+.register p span.wrong{
+    color: #EE2222;
+}
+
+
+
+footer{
+    width: 100%;
+    height: 300px;
+    background-color: #414141;
+    overflow: hidden;
+}
+.innerfooter{
+    width: 1100px;
+    height: 300px;
+    margin: 0 auto;
+}
+.ensureUl{
+    width: 1100px;
+    height: 60px;
+    margin-top: 50px;
+}
+.ensureUl li{
+    float: left;
+    width: 362px;
+    height: 60px;
+}
+.ensureimg{
+    width: 60px;
+    height: 60px;
+    float: left;
+    margin-left: 80px;
+    background: green;
+}
+.ensureimg1{
+    background: url(../images/footer.png) no-repeat 0px 0px;
+}
+.ensureimg2{
+    background: url(../images/footer.png) no-repeat 0px -60px;
+}
+.ensureimg3{
+    background: url(../images/footer.png) no-repeat 0px -120px;
+}
+.ensureUl li p{
+    float: left;
+    margin-left: 10px;
+    margin-top: 12px;
+    font-size: 20px;
+    color: white;
+}
+.innerfooter hr{
+    height: 1px;
+    background-color: #4f4f4f;
+    border: none;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.aboutus a{
+    color: #999;  
+}
+.aboutus{
+    font-size: 12px;
+    color: #999;
+    float: left;
+}
+.aboutus p{
+    margin-bottom: 6px;
+}
+.us_nav a{
+    border-left: 1px solid #5C5C5C;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+.us_nav a:first-child{
+    border: none;
+    padding-left: 0;
+}
+.us_nav a:hover{
+    color: #ccc;
+}

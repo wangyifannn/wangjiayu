@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>商品分类</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="shortcut icon" href="images/favicon.ico">
+</head>
+
+<body>
+
+    <header>
+        <div class="loginBox">
+            <div class="loginDiv">
+                <a href="index.html">好品质，好生活</a>
+                <div class="login_right">
+                    <ul>
+                        <li>
+                            <p class="loginsite">
+                                <a href="login.html">登录</a>
+                                <a href="register.html">注册</a>
+                            </p>
+                        </li>
+                        <li><a href="order.html">我的订单</a></li>
+                        <li><a href="cart.html">购物车</a></li>
+                        <li><a href="">下载APP</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="logoDiv">
+            <a href="index.html">
+                <div class="logo"></div>
+            </a>
+            <div class="searchDiv">
+                <input type="text" id="searchTxt" class="searchTxt" placeholder="搜索商品">
+                <input type="button" id="searchBtn" class="searchBtn">
+            </div>
+        </div>
+
+        <div id="navDiv" class="navDiv">
+            <ul>
+                <li><a href="index.html" class="navfirst">首页</a></li>
+            </ul>
+
+            <div class="fixedDiv">
+                <div class="fixedNav">
+                    <div class="navLogo"></div>
+                    <ul>
+                        <li><a href="index.html" class="navfirst">首页</a></li>
+                    </ul>
+                    <div class="fixedLogin">
+                        <p class="loginsite">
+                            <a href="login.html">登录</a>
+                            <a href="register.html">注册</a>
+                        </p>
+                        <a href="cart.html" class="shopping_cart"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <aside>
+        <div class="asideDiv a_downAPP">
+            <div></div>
+            <p>下载APP</p>
+        </div>
+        <div class="asideDiv a_service">
+            <div></div>
+            <p>在线客服</p>
+        </div>
+        <div class="asideDiv a_feedback">
+            <div></div>
+            <p>意见反馈</p>
+        </div>
+        <div class="asideDiv a_survey">
+            <div></div>
+            <p>有奖调查</p>
+        </div>
+
+        <div class="asideDiv backtotop">回到顶部</div>
+    </aside>
+
+
+
+
+    <section>
+
+
+        <div id="content" class="content">
+            <ul></ul>
+        </div>
+    </section>
+
+
+    <footer>
+        <div class="innerfooter">
+            <ul class="ensureUl">
+                <li>
+                    <div class="ensureimg ensureimg1"></div>
+                    <p>30天无忧退货</p>
+                </li>
+                <li>
+                    <div class="ensureimg ensureimg2"></div>
+                    <p>满88元包邮</p>
+                </li>
+                <li>
+                    <div class="ensureimg ensureimg3"></div>
+                    <p>网易品质保证</p>
+                </li>
+            </ul>
+            <hr>
+            <div class="aboutus">
+                <p class="us_nav">
+                    <a href="">关于我们</a>
+                    <a href="">服务协议</a>
+                    <a href="">使用指南</a>
+                    <a href="">联系我们</a>
+                    <a href="">加入我们</a>
+                    <a href="">售后服务</a>
+                    <a href="">搜索推荐</a>
+                    <a href="">友情链接</a>
+                </p>
+                <p>网易公司版权所有 © 1997-2017 食品经营许可证：JY13301080111719</p>
+                <p>公司名称</p>
+                <p>公司地址</p>
+                <p>图书证名称：中华人民共和国出版物经营许可证 图书证编号：新出发京零 字第 朝 150051 号</p>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script src="js/jquery-1.12.3.min.js"></script>
+    <script>
+        // 判断客户是否已登录，若登录，将网页中的登录注册等换成客户的用户名
+        if (localStorage.getItem("token")) {
+            $(".loginsite").html(localStorage.getItem("username"));
+        }
+
+
+
+
+        $(function() {
+
+            // 导航栏
+            $.get("http://h6.duchengjiu.top/shop/api_cat.php", function(response) {
+
+                for (var i = 0; i < response.data.length; i++) {
+
+                    $("#navDiv ul").append('<li><a href="list.html?cat_id=' + response.data[i].cat_id + '">' + response.data[i].cat_name + '</a></li>');
+                }
+
+
+            });
+
+
+
+            // 搜索框
+            $("#searchBtn").click(function() {
+
+                var txtStr = $("#searchTxt").val();
+
+                // 如果是数字true，如果是汉字false
+                if (txtStr > 0) {
+                    window.location.href = "detail.html?goods_id=" + txtStr;
+                } else {
+                    window.location.href = "list.html?search_text=" + txtStr;
+                }
+
+            });
+
+
+
+            // 侧边导航栏
+
+            $(window).scroll(function() {
+                if ($(window).scrollTop() > 300) {
+                    $("aside").stop(true).fadeIn();
+                    $(".fixedDiv").stop(true).fadeIn();
+                } else {
+                    $("aside").stop(true).fadeOut();
+                    $(".fixedDiv").stop(true).fadeOut();
+                }
+            });
+
+            $(".backtotop").click(function() {
+                $("html,body").animate({
+                    "scrollTop": 0
+                }, 500);
+            });
+
+
+
+
+
+            // 分类商品
+
+            // 通过location.search获得请求的数据，截取?后面的内容。
+            var str = location.search.substr(1);
+
+            // 用字符串的分割方法，以=号分割将字符串变为数组，并获得数组第二项的参数值
+            var variable = str.split("=")[1];
+
+            // 搜索跳转是汉字，导航栏跳转是数字。
+
+            // 转译码，将URI编码转为汉字
+            var searchtxt = decodeURI(variable);
+
+            // 数字相等，汉字不相等
+            if (variable == searchtxt) {
+
+                $.ajax({
+                    "url": "http://h6.duchengjiu.top/shop/api_goods.php",
+                    "type": "GET",
+                    "data": {
+                        "cat_id": variable
+                    },
+                    "dataType": "json",
+                    "success": function(response) {
+
+                        for (var i = 0; i < response.data.length; i++) {
+
+                            $("#content ul").append('<li><div class="imgDiv"><img src="' + response.data[i].goods_thumb + '"><div class="maskImgDiv"><span goodsId="' + response.data[i].goods_id + '" class="add_to_cart">加入购物车</span></div></div><p title="' + response.data[i].goods_name + '"><a href="detail.html?goods_id=' + response.data[i].goods_id + '">' + response.data[i].goods_name + '</a></p><p>' + response.data[i].goods_desc + '</p><p class="price">￥' + response.data[i].price + '</p></li>');
+                        }
+                        addCart();
+                    }
+                });
+
+            } else {
+
+                $.ajax({
+                    "url": "http://h6.duchengjiu.top/shop/api_goods.php",
+                    "type": "GET",
+                    "data": {
+                        "search_text": searchtxt
+                    },
+                    "dataType": "json",
+                    "success": function(response) {
+
+                        for (var i = 0; i < response.data.length; i++) {
+
+                            $("#content ul").append('<li><div class="imgDiv"><img src="' + response.data[i].goods_thumb + '"><div class="maskImgDiv"><span goodsId="' + response.data[i].goods_id + '" class="add_to_cart">加入购物车</span></div></div><p title="' + response.data[i].goods_name + '"><a href="detail.html?goods_id=' + response.data[i].goods_id + '">' + response.data[i].goods_name + '</a></p><p>' + response.data[i].goods_desc + '</p><p class="price">￥' + response.data[i].price + '</p></li>');
+                        }
+                        addCart();
+
+                    }
+                });
+
+                $("#searchTxt").val(searchtxt);
+            }
+
+
+
+
+
+            // 加入购物车事件
+            function addCart() {
+
+
+                $(".add_to_cart").click(function() {
+
+                    if (!localStorage.getItem("token")) {
+                        alert("登录后才能加入购物车，请登录");
+                        location.href = "login.html#callback=" + location.href;
+                        return;
+                    }
+
+                    var goodsId = $(this).attr("goodsId");
+                    console.log(goodsId);
+
+                    var goods_number = localStorage.getItem("cart" + goodsId);
+
+                    goods_number = goods_number ? parseInt(goods_number) + 1 : 1;
+
+
+                    $.ajax({
+                        "url": "http://h6.duchengjiu.top/shop/api_cart.php?token=" + localStorage.token,
+                        "type": "POST",
+                        "data": {
+                            "goods_id": goodsId,
+                            "number": goods_number
+                        },
+                        "dataType": "json",
+                        "success": function(response) {
+                            // console.log(response);
+                            localStorage.setItem("cart" + goodsId, goods_number);
+
+                        }
+                    });
+
+                    alert("添加成功");
+
+                });
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        });
+    </script>
+</body>
+
+</html>

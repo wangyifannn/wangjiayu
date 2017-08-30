@@ -1,0 +1,38 @@
+.logo{
+    margin-left: 200px;
+}
+.suclogin{
+    width: 400px;
+    height: 200px;
+    border: 1px solid #ccc;
+    line-height: 200px;
+    padding: 0 80px;
+}
+.qrcode{
+    width: 300px;
+    height: 70px;
+    margin-left: 40px;
+}
+.qrcode a{
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    background: url(../images/icons.svg) no-repeat;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.weibo:hover{
+    background-position: 0 -80px;
+}
+.qrcode .qq{
+background-position: -80px 0;
+}
+.qrcode .qq:hover{
+    background-position: -80px -80px;
+}
+.qrcode .weixin{
+    background-position: -160px 0;
+}
+.qrcode .weixin:hover{
+background-position: -160px -160px;
+}

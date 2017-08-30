@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>我的购物车</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="shortcut icon" href="images/favicon.ico">
+
+</head>
+
+<body>
+    <header>
+        <div class="loginBox">
+            <div class="loginDiv">
+                <a href="index.html">好品质，好生活</a>
+                <div class="login_right">
+                    <ul>
+                        <li>
+                            <p class="loginsite">
+                                <a href="login.html">登录</a>
+                                <a href="register.html">注册</a>
+                            </p>
+                        </li>
+                        <li><a href="order.html">我的订单</a></li>
+                        <li><a href="">下载APP</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="logoDiv">
+            <a href="index.html">
+                <div class="logo"></div>
+            </a>
+            <h2>购物车</h2>
+            <div class="searchDiv">
+                <input type="text" id="searchTxt" class="searchTxt" placeholder="搜索商品">
+                <input type="button" id="searchBtn" class="searchBtn">
+            </div>
+        </div>
+    </header>
+
+    <aside>
+        <div class="asideDiv a_downAPP">
+            <div></div>
+            <p>下载APP</p>
+        </div>
+        <div class="asideDiv a_service">
+            <div></div>
+            <p>在线客服</p>
+        </div>
+        <div class="asideDiv a_feedback">
+            <div></div>
+            <p>意见反馈</p>
+        </div>
+        <div class="asideDiv a_survey">
+            <div></div>
+            <p>有奖调查</p>
+        </div>
+
+        <div class="asideDiv backtotop">回到顶部</div>
+    </aside>
+
+    <section>
+        <div class="inner_section">
+
+
+
+            <div class="cart_head">
+                <div class="cart_head_check">
+                    <input type="checkbox" class="check_all" checked>全选
+                </div>
+                <div class="cart_head_pro">商品信息</div>
+                <div class="cart_head_unitp">单价</div>
+                <div class="cart_head_number">数量</div>
+                <div class="cart_head_subp">小计</div>
+                <div class="cart_head_operation">操作</div>
+            </div>
+
+
+
+            <div class="cart_content" id="cart_content">
+
+                <!-- <div class="cart_pro">
+                        <div class="cart_pro_check">
+                            <input type="checkbox" class="pro_check">
+                            <input type="hidden" class="cart_pro_goodsid" value="商品id">
+                            <img src="">
+                        </div>
+                        <div class="cart_pro_pro">商品信息</div>
+                        <div class="cart_pro_unitp">￥<span>单价</span></div>
+                        <div class="cart_pro_number">
+                            <a href="javascript:void(0);" class="cart_pro_decrease">-</a>
+                            <input type="text" value="1" class="current_number">
+                            <a href="javascript:void(0);" class="cart_pro_add">+</a>
+                        </div>
+                        <div class="cart_pro_subp">￥<span>小计</span></div>
+                        <div class="cart_pro_operation">
+                            <a href="javascript:void(0);" class="cart_pro_delete">删除</a>
+                        </div>
+                    </div> -->
+
+            </div>
+
+
+
+
+            <div class="cart_foot">
+                <div class="cart_foot_left">
+                    <a href="javascript:void(0);" class="cart_foot_delete">删除选中的商品</a>
+                </div>
+                <div class="cart_foot_right">
+                    <div class="cart_foot_number">
+                        已选择 <strong>0</strong> 件商品
+                    </div>
+                    <div class="cart_foot_subprice">
+                        总价（不含运费）：<strong>￥<span>0</span></strong>
+                    </div>
+                    <a href="javascript:void(0);" class="cart_foot_account">去结算</a>
+                </div>
+            </div>
+        </div>
+
+
+
+    </section>
+
+
+    <div class="confirmDiv">
+        <div class="confirm_header">删除</div>
+        <div class="confirm_content">
+            <span></span>
+            <p>确定要删除商品吗？</p>
+        </div>
+        <div class="confirm_footer">
+            <span class="confirm_cancel">取消</span>
+            <span class="confirm_confirm">确定</span>
+        </div>
+    </div>
+
+
+    <footer>
+        <div class="innerfooter">
+            <ul class="ensureUl">
+                <li>
+                    <div class="ensureimg ensureimg1"></div>
+                    <p>30天无忧退货</p>
+                </li>
+                <li>
+                    <div class="ensureimg ensureimg2"></div>
+                    <p>满88元包邮</p>
+                </li>
+                <li>
+                    <div class="ensureimg ensureimg3"></div>
+                    <p>网易品质保证</p>
+                </li>
+            </ul>
+            <hr>
+            <div class="aboutus">
+                <p class="us_nav">
+                    <a href="">关于我们</a>
+                    <a href="">服务协议</a>
+                    <a href="">使用指南</a>
+                    <a href="">联系我们</a>
+                    <a href="">加入我们</a>
+                    <a href="">售后服务</a>
+                    <a href="">搜索推荐</a>
+                    <a href="">友情链接</a>
+                </p>
+                <p>网易公司版权所有 © 1997-2017 食品经营许可证：JY13301080111719</p>
+                <p>公司名称</p>
+                <p>公司地址</p>
+                <p>图书证名称：中华人民共和国出版物经营许可证 图书证编号：新出发京零 字第 朝 150051 号</p>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script src="js/jquery-1.12.3.min.js"></script>
+    <script>
+        var noProDiv = `<div class="cart_no_pro">
+                            <img src="images/cartimg.png">
+                            <p>购物车内暂时没有商品，请先购物</p>
+                            <a href="index.html">去购物></a>
+                        </div>`;
+
+
+
+        // 判断客户是否已登录，若登录，将网页中的登录注册等换成客户的用户名
+        if (localStorage.getItem("token")) {
+            $(".loginsite").html(localStorage.getItem("username"));
+        } else {
+
+            $(".inner_section").html(noProDiv);
+
+        }
+
+
+
+        $(function() {
+
+
+            // 搜索框
+            $("#searchBtn").click(function() {
+
+                var txtStr = $("#searchTxt").val();
+
+                // 如果是数字true，如果是汉字false
+                if (txtStr > 0) {
+                    window.location.href = "detail.html?goods_id=" + txtStr;
+                } else {
+                    window.location.href = "list.html?search_text=" + txtStr;
+                }
+
+            });
+
+
+            // 侧边导航栏
+
+            $(window).scroll(function() {
+                if ($(window).scrollTop() > 300) {
+                    $("aside").stop(true).fadeIn();
+                } else {
+                    $("aside").stop(true).fadeOut();
+                }
+            });
+
+            $(".backtotop").click(function() {
+                $("html,body").animate({
+                    "scrollTop": 0
+                }, 500);
+            });
+
+
+
+            // 获取购物车列表
+            $.ajax({
+                "url": "http://h6.duchengjiu.top/shop/api_cart.php?token=" + localStorage.token,
+                "type": "GET",
+                "dataType": "json",
+                "success": function(response) {
+                    // console.log(response);
+                    if (response.data.length > 0) {
+
+                        for (var i = 0; i < response.data.length; i++) {
+
+                            var obj = response.data[i];
+
+                            var html = `<div class="cart_pro">
+                                                <div class="cart_pro_check">
+                                                    <input type="checkbox" class="pro_check" checked>
+                                                    <input type="hidden" class="cart_pro_goodsid" value="${ obj.goods_id }">
+                                                    <img src="${ obj.goods_thumb }">
+                                                </div>
+                                                <div class="cart_pro_pro"><a href="detail.html?goods_id=${ obj.goods_id }">${ obj.goods_name }</a></div>
+                                                <div class="cart_pro_unitp">￥<span>${ obj.goods_price }</span></div>
+                                                <div class="cart_pro_number">
+                                                    <a href="javascript:void(0);" class="cart_pro_decrease">-</a>
+                                                    <input type="text" value="${ obj.goods_number }" class="current_number">
+                                                    <a href="javascript:void(0);" class="cart_pro_add">+</a>
+                                                </div>
+                                                <div class="cart_pro_subp">￥<span>${ obj.goods_price * obj.goods_number }</span></div>
+                                                <div class="cart_pro_operation">
+                                                    <a href="javascript:void(0);" class="cart_pro_delete">删除</a>
+                                                </div>
+                                            </div>`;
+
+                            $("#cart_content").html($("#cart_content").html() + html);
+
+                        }
+
+                        // 显示总价和总数量
+                        showSum();
+
+
+                        // 加号按钮改变数量监听事件
+                        $(".cart_pro_add").click(function() {
+                            changeNumber(this, +1);
+                        });
+
+                        // 减号按钮改变数量监听事件
+                        $(".cart_pro_decrease").click(function() {
+                            changeNumber(this, -1);
+                        });
+
+                        // 数量文本框改变value监听事件
+                        $(".current_number").blur(function() {
+                            var num = parseInt($(this).val());
+                            changeNumber(this, num);
+                        });
+
+                        // 键盘上下按键改变商品数量事件
+                        $(".current_number").keydown(function(event) {
+                            var event = event || window.event;
+                            event.preventDefault();
+
+                            if (event.keyCode == 40) {
+                                changeNumber(this, -1);
+                            } else if (event.keyCode == 38) {
+                                changeNumber(this, +1);
+                            }
+
+                        });
+
+
+
+
+                        // 添加删除事件
+                        $(".cart_pro_delete").click(function() {
+                            $removeLi = $(this).parents("div.cart_pro");
+
+                            deletePro();
+                        });
+
+
+                        // 删除复选框选中的商品
+                        $(".cart_foot_delete").click(function() {
+                            $removeLi = $("input.pro_check:checked").parents("div.cart_pro");
+                            deletePro();
+
+                        });
+
+
+
+                    } else {
+
+                        $(".inner_section").html(noProDiv);
+
+                    }
+                }
+            });
+        });
+
+
+        // 更新数据库购物车ajax处理
+        function updateCart(goods_id, number) {
+            $.ajax({
+                "url": "http://h6.duchengjiu.top/shop/api_cart.php?token=" + localStorage.token,
+                "type": "POST",
+                "data": {
+                    "goods_id": goods_id,
+                    "number": number
+                },
+                "dataType": "json",
+                "success": function(response) {
+                    // console.log(response);
+
+                    if (response.code == 0) {
+
+                        if (number == 0) {
+                            localStorage.removeItem("cart" + goods_id);
+                        } else {
+                            localStorage.setItem("cart" + goods_id, number);
+                        }
+
+                    } else {
+                        alert("购物车更新失败，请刷新重试");
+                    }
+                }
+            });
+        }
+
+
+
+        // 删除商品函数
+        function deletePro() {
+
+            $(".confirmDiv").css("display", "block");
+            $("body").append("<div class='mask_div'></div>");
+            $(".mask_div").css("height", $(document).height());
+
+        }
+
+        // 点击取消，取消删除选择框
+        $(".confirm_cancel").click(function() {
+            $(".confirmDiv").css("display", "none");
+            $(".mask_div").remove();
+        });
+
+        // 点击确定，删除商品
+        var $removeLi;
+        $(".confirm_confirm").click(function() {
+
+            $(".confirmDiv").css("display", "none");
+            $(".mask_div").remove();
+
+            $removeLi.remove();
+
+            showSum();
+
+            var goods_id = $removeLi.find("input.cart_pro_goodsid").val();
+
+
+            updateCart(goods_id, 0);
+
+
+            if ($(".pro_check").length > 0) {
+                if ($(".pro_check").length === $(".pro_check:checked").length) {
+                    $(".check_all").prop("checked", true);
+                } else {
+                    $(".check_all").prop("checked", false);
+                }
+            } else {
+                $(".check_all").prop("checked", false);
+                $(".inner_section").html(noProDiv);
+            }
+
+        });
+
+
+
+
+        // 改变商品数量函数
+        function changeNumber(obj, num) {
+
+            var $parentsDiv = $(obj).parents("div.cart_pro");
+
+            var $gntxt = $parentsDiv.find("input.current_number");
+
+            var goods_number = parseInt($gntxt.val());
+
+            var $guptxt = $parentsDiv.find("div.cart_pro_unitp span");
+
+            var goods_unit_price = parseFloat($guptxt.text());
+
+            var $gsptxt = $parentsDiv.find("div.cart_pro_subp span");
+
+            var goods_id = $parentsDiv.find("input.cart_pro_goodsid").val();
+
+
+            if (num == "-1" && goods_number <= 1) {
+                return;
+            }
+            if (num == "+1" && goods_number >= 10) {
+                return;
+            }
+
+            if (num == "-1") {
+                goods_number--;
+            } else if (num == "+1") {
+                goods_number++;
+            } else if (num > 0 && num <= 10) {
+                goods_number = num;
+            } else if (num < 1) {
+                goods_number = 1;
+            } else if (num > 10) {
+                goods_number = 10;
+            } else {
+                goods_number = 1;
+            }
+
+            $gntxt.val(goods_number);
+
+            $gsptxt.text(goods_number * goods_unit_price);
+
+            showSum();
+
+            // console.log(goods_id, goods_number);
+            updateCart(goods_id, goods_number);
+
+        }
+
+
+        // 显示总价及总数量函数
+        function showSum() {
+
+            var sumPrice = 0;
+            var sumNum = 0;
+
+            for (var i = 0; i < $(".cart_pro").length; i++) {
+
+                var objDiv = $(".cart_pro")[i];
+
+                if ($(objDiv).find("input.pro_check").is(":checked")) {
+
+                    sumPrice += parseInt($(objDiv).find("div.cart_pro_subp span").text());
+                    sumNum += parseInt($(objDiv).find("input.current_number").val());
+                }
+            }
+
+            $(".cart_foot_subprice span").text(sumPrice);
+            $(".cart_foot_number strong").text(sumNum);
+
+        }
+
+
+
+        // 全选及复选框选中事件监听,事件委托
+        $(".inner_section").click(function(event) {
+            var event = event || window.event;
+
+            if (event.target.className === "check_all") {
+
+                var selected = event.target.checked;
+
+                for (var i = 0; i < $(".pro_check").length; i++) {
+                    $(".pro_check")[i].checked = selected;
+                }
+
+                showSum();
+                return;
+            }
+
+            if (event.target.type === "checkbox") {
+                showSum();
+            }
+
+            if ($(".pro_check").length === $(".pro_check:checked").length) {
+                $(".check_all").prop("checked", true);
+            } else {
+                $(".check_all").prop("checked", false);
+            }
+
+
+        });
+
+        $(".cart_foot_account").click(function() {
+            var sumPrice = $(".cart_foot_subprice span").text();
+
+            location.href = "checkout.html?sp=" + sumPrice;
+
+        });
+    </script>
+</body>
+
+</html>

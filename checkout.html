@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>订单结算页</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/checkout.css">
+    <link rel="shortcut icon" href="images/favicon.ico">
+
+</head>
+
+<body>
+
+    <header>
+        <div class="loginBox">
+            <div class="loginDiv">
+                <a href="index.html">好品质，好生活</a>
+                <div class="login_right">
+                    <ul>
+                        <li>
+                            <p class="loginsite">
+                                <a href="login.html">登录</a>
+                                <a href="register.html">注册</a>
+                            </p>
+                        </li>
+                        <li><a href="order.html">我的订单</a></li>
+                        <li><a href="cart.html">购物车</a></li>
+                        <li><a href="">下载APP</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="logoDiv">
+            <a href="index.html">
+                <div class="logo"></div>
+            </a>
+            <h2>结算页</h2>
+            <div class="searchDiv">
+                <input type="text" id="searchTxt" class="searchTxt" placeholder="搜索商品">
+                <input type="button" id="searchBtn" class="searchBtn">
+            </div>
+        </div>
+    </header>
+
+    <aside>
+        <div class="asideDiv a_downAPP">
+            <div></div>
+            <p>下载APP</p>
+        </div>
+        <div class="asideDiv a_service">
+            <div></div>
+            <p>在线客服</p>
+        </div>
+        <div class="asideDiv a_feedback">
+            <div></div>
+            <p>意见反馈</p>
+        </div>
+        <div class="asideDiv a_survey">
+            <div></div>
+            <p>有奖调查</p>
+        </div>
+
+        <div class="asideDiv backtotop">回到顶部</div>
+    </aside>
+
+    <section>
+
+        <div class="inner_section">
+
+            <p>填写并核对订单信息</p>
+            <div class="content">
+
+                <div class="con_box address">
+                    <h4>收货人信息 <a href="javascript:void(0)" class="add_address">新增收货地址</a></h4>
+                    <div class="add_address_div">
+                        <p class="address_head">新增收货人信息<span class="close_x"></span></p>
+                        <form>
+
+                            <p>
+                                <strong> <span>*</span> 收货人</strong>
+                                <input type="text" name="address_name" placeholder="请输入收货人姓名" autofocus>
+                            </p>
+
+                            <p>
+                                <strong> <span>*</span>省</strong>
+                                <select name="province">
+                                        <option>湖北省</option>
+                                        <option>湖南省</option>
+                                        <option>陕西省</option>
+                                        <option>云南省</option>
+                                        <option>山东省</option>
+                                    </select>
+                            </p>
+
+                            <p>
+                                <strong> <span>*</span>市</strong>
+                                <select name="city">
+                                        <option>武汉</option>
+                                        <option>长沙</option>
+                                        <option>西安</option>
+                                        <option>昆明</option>
+                                        <option>济南</option>
+                                    </select>
+                            </p>
+
+                            <p>
+                                <strong> <span>*</span>区</strong>
+                                <input type="text" name="district" placeholder="请输入地址所在区">
+                            </p>
+
+                            <p>
+                                <strong> <span>*</span>街道</strong>
+                                <input type="text" name="address" placeholder="请输入详细街道地址">
+                            </p>
+
+                            <p>
+                                <strong> <span>*</span>手机号</strong>
+                                <input type="tell" name="mobile" placeholder="请输入收货人手机号">
+                            </p>
+
+                            <p>
+                                <strong>邮箱地址</strong>
+                                <input type="email" name="email" placeholder="请输入邮箱地址">
+                            </p>
+
+                            <p>
+                                <input type="button" name="" class="sub_add_address" value="保存收货人信息">
+                            </p>
+
+                        </form>
+                    </div>
+
+
+                    <ul class="address_ul spanstyle">
+
+                    </ul>
+
+
+                    <div class="confirmDiv">
+                        <div class="confirm_header">删除</div>
+                        <div class="confirm_content">
+                            <span></span>
+                            <p>确定要删除地址信息吗？</p>
+                        </div>
+                        <div class="confirm_footer">
+                            <span class="confirm_cancel">取消</span>
+                            <span class="confirm_confirm">确定</span>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="con_box spanstyle payment">
+                    <h4>支付方式</h4>
+                    <span>货到付款</span>
+                    <span class="cur_default">在线支付</span>
+                </div>
+
+                <div class="con_box spanstyle">
+                    <h4>配送时间</h4>
+                    <span>工作日配送</span>
+                    <span class="cur_default">工作日、双休、节假日均可送货</span>
+                </div>
+
+            </div>
+
+
+            <div class="order">
+                <p>应付总额: <strong>￥price</strong> </p>
+                <a href="javascript:void(0);" class="submit_order"></a>
+            </div>
+
+
+
+
+
+
+
+
+        </div>
+    </section>
+
+
+
+    <footer>
+        <div class="innerfooter">
+            <ul class="ensureUl">
+                <li>
+                    <div class="ensureimg ensureimg1"></div>
+                    <p>30天无忧退货</p>
+                </li>
+                <li>
+                    <div class="ensureimg ensureimg2"></div>
+                    <p>满88元包邮</p>
+                </li>
+                <li>
+                    <div class="ensureimg ensureimg3"></div>
+                    <p>网易品质保证</p>
+                </li>
+            </ul>
+            <hr>
+            <div class="aboutus">
+                <p class="us_nav">
+                    <a href="">关于我们</a>
+                    <a href="">服务协议</a>
+                    <a href="">使用指南</a>
+                    <a href="">联系我们</a>
+                    <a href="">加入我们</a>
+                    <a href="">售后服务</a>
+                    <a href="">搜索推荐</a>
+                    <a href="">友情链接</a>
+                </p>
+                <p>网易公司版权所有 © 1997-2017 食品经营许可证：JY13301080111719</p>
+                <p>公司名称</p>
+                <p>公司地址</p>
+                <p>图书证名称：中华人民共和国出版物经营许可证 图书证编号：新出发京零 字第 朝 150051 号</p>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+    <script src="js/jquery-1.12.3.min.js"></script>
+
+    <script>
+        // 判断客户是否已登录，若登录，将网页中的登录注册等换成客户的用户名
+        if (localStorage.getItem("token")) {
+            $(".loginsite").html(localStorage.getItem("username"));
+        }
+
+
+        // 通过location的url获取订单总金额显示在页面中
+        var sumP = location.search.substr(1).split("=")[1];
+        $(".order strong").html("￥" + sumP);
+
+
+
+        $(function() {
+
+            // 搜索框
+            $("#searchBtn").click(function() {
+
+                var txtStr = $("#searchTxt").val();
+
+                // 如果是数字true，如果是汉字false
+                if (txtStr > 0) {
+                    window.location.href = "detail.html?goods_id=" + txtStr;
+                } else {
+                    window.location.href = "list.html?search_text=" + txtStr;
+                }
+
+            });
+
+
+            // 点击改变span的样式
+            $(".spanstyle span").click(function() {
+
+                $(this).addClass("cur_default").siblings().removeClass("cur_default");
+
+            });
+
+
+
+            // 侧边导航栏
+
+            $(window).scroll(function() {
+                if ($(window).scrollTop() > 300) {
+                    $("aside").stop(true).fadeIn();
+                } else {
+                    $("aside").stop(true).fadeOut();
+                }
+            });
+
+            $(".backtotop").click(function() {
+                $("html,body").animate({
+                    "scrollTop": 0
+                }, 500);
+            });
+
+
+
+
+            getAddress();
+            var $removeLi, address_id;
+
+            // 获取地址信息函数
+            function getAddress() {
+
+                $.ajax({
+                    "url": "http://h6.duchengjiu.top/shop/api_useraddress.php?token=" + localStorage.token,
+                    "type": "GET",
+                    "dataType": "json",
+                    "success": function(response) {
+
+                        $(".address_ul").html("");
+
+                        for (var i = 0; i < response.data.length; i++) {
+
+                            var obj = response.data[i];
+
+                            var html = `<li class="address_item" data_id="${obj.address_id}"><span>${obj.address_name}</span>
+                                    ${obj.address_name}&nbsp&nbsp${obj.province}&nbsp${obj.city}&nbsp${obj.district}&nbsp${obj.address}&nbsp&nbsp${obj.mobile}&nbsp
+                                    <a href="javascript:void(0)" class="delete_address">删除地址</a></li>`;
+
+                            $(".address_ul").append(html);
+
+                        }
+
+                        $(".address_item span:first").addClass("cur_default");
+
+
+                        $(".address_item span").click(function() {
+                            $(this).addClass("cur_default").parent().siblings().children("span").removeClass("cur_default");
+                        });
+
+
+
+                        // 删除地址信息
+                        $(".delete_address").click(function() {
+
+                            $removeLi = $(this).parent();
+                            address_id = $removeLi.attr("data_id");
+
+
+                            $(".confirmDiv").css("display", "block");
+                            $("body").append("<div class='mask_div'></div>");
+                            $(".mask_div").css("height", $(document).height());
+
+                        });
+                    }
+                });
+            }
+
+            // 删除地址点击取消，弹框消失
+            $(".confirm_cancel").click(function() {
+                $(".confirmDiv").css("display", "none");
+                $(".mask_div").remove();
+            });
+
+            // 删除地址点击确定，调用ajax删除地址，成功后删除网页中的DOM节点
+            $(".confirm_confirm").click(function() {
+
+                $(".confirmDiv").css("display", "none");
+                $(".mask_div").remove();
+
+                $.ajax({
+                    "url": "http://h6.duchengjiu.top/shop/api_useraddress.php?token=" + localStorage.token + "&status=delete&address_id=" + address_id,
+                    "type": "GET",
+                    "dataType": "json",
+                    "success": function(response) {
+                        if (response.code === 0) {
+                            $removeLi.remove();
+                        } else {
+                            alert("删除地址失败，请刷新重试")
+                        }
+                    }
+                });
+            });
+
+
+
+
+
+
+
+            // 新增收货人地址
+            $(".add_address").click(function() {
+
+                $(".add_address_div").css("display", "block");
+                $("body").append("<div class='mask_div'></div>");
+                $(".mask_div").css("height", $(document).height());
+
+            });
+
+            $(".close_x").click(function() {
+                $(".add_address_div").css("display", "none");
+                $(".mask_div").remove();
+            });
+
+            $(".sub_add_address").click(function() {
+
+                var data = $("form").serialize();
+
+                $.ajax({
+                    "url": "http://h6.duchengjiu.top/shop/api_useraddress.php?token=" + localStorage.token + "&status=add",
+                    "type": "POST",
+                    "data": data,
+                    "dataType": "json",
+                    "success": function(response) {
+
+                        if (response.code === 0) {
+                            $(".add_address_div").css("display", "none");
+                            $(".mask_div").remove();
+                            $("form")[0].reset();
+
+                            getAddress();
+
+                        } else {
+                            alert("新增地址添加失败，请刷新重试")
+                        }
+
+                    }
+                });
+
+            });
+
+
+
+            $(".submit_order").click(function() {
+
+                // console.log($(".address_item span[class*='cur_default']").parent().attr("data_id"));
+
+                var address_id = $(".address_item span[class*='cur_default']").parent().attr("data_id");
+
+                $.ajax({
+                    "url": "http://h6.duchengjiu.top/shop/api_order.php?token=" + localStorage.token + "&status=add",
+                    "type": "POST",
+                    "dataType": "json",
+                    "data": {
+                        "address_id": address_id, //地址id
+                        "total_prices": sumP //购物车页面的总金额
+                    },
+                    "success": function(response) {
+                        console.log(response);
+                        if (response.code === 0) {
+                            location.href = "order.html";
+                        } else {
+                            alert(response.message + ",请刷新重试");
+                        }
+
+                    }
+
+                });
+            });
+
+
+
+
+
+
+
+        });
+    </script>
+</body>
+
+</html>
